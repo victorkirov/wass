@@ -3,7 +3,7 @@ import os
 
 DEFAULT_SLIDESHOW_DELAY = float(os.environ.get('WASS_DELAY', 2))
 
-ROOT_IMAGE_FOLDER = os.environ.get('WASS_IMAGE_FOLDER', '/home/vic/Pictures/')
+ROOT_IMAGE_FOLDER = os.environ.get('WASS_IMAGE_FOLDER', '/home/pi/Pictures/')
 ROOT_IMAGE_FOLDER = (
     ROOT_IMAGE_FOLDER
     if ROOT_IMAGE_FOLDER.endswith('/')
