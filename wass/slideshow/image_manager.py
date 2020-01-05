@@ -1,3 +1,4 @@
+import logging
 from enum import Enum
 from os import listdir, walk
 from os.path import isdir, isfile, join
@@ -7,6 +8,9 @@ from PIL import Image
 from PIL.ImageFile import ImageFile
 
 import wass.config as config
+
+
+logger = logging.getLogger(__name__)
 
 
 class Direction(Enum):
@@ -53,9 +57,16 @@ class ImageManager:
         self._go_to_next_image(Direction.Reverse)
         return self._current_image
 
+    @property
+    def folder_name(self):
+        """
+        The name of the current folder
+        """
+        return self._image_folders[self._folder_index]
+
     def _go_to_next_image(self, direction: Direction = Direction.Forward) -> None:
         # we haven't got a current image so initialise
-        if None in (self._folder_index, self._file_index):
+        if self._folder_index is None:
             self.go_to_next_folder()
 
         # We keep track of this in case there are no available images so we don't get lost in an
@@ -116,7 +127,7 @@ class ImageManager:
     def go_to_next_folder(self, direction: Direction = Direction.Forward) -> None:
         # First step is to regenerate folder list of folders inside the root folder
         if self._folder_index is not None:
-            current_folder = self._image_folders[self._folder_index]
+            current_folder = self.folder_name
 
             self._generate_folder_list()
 

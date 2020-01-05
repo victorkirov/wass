@@ -1,7 +1,11 @@
+import logging
 from typing import List
 
 import screeninfo
 from screeninfo.common import Monitor
+
+
+logger = logging.getLogger(__name__)
 
 
 class ScreenManager:

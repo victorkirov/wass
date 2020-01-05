@@ -1,3 +1,4 @@
+import logging
 import sys
 import tkinter as tk
 from typing import Type
@@ -6,6 +7,9 @@ from PIL import Image, ImageTk
 from PIL.ImageFile import ImageFile
 
 from wass.slideshow.screen_manager import ScreenManager
+
+
+logger = logging.getLogger(__name__)
 
 
 class ImageDisplayer(tk.Tk):
